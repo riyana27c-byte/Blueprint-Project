@@ -92,7 +92,7 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+   <div className="app-container">
       <header>
         <h1>Perfect Getaway</h1>
         <p>Plan your perfect vacation in seconds!</p>
@@ -101,13 +101,13 @@ function App() {
       <nav>
         <ul>
           <li>
-            <a href="#PickDestOptions">Pick your Destination!</a>
+            <a href="#PickDestOptions">Pick Your Travel Destination</a>
           </li>
           <li>
             <a href="#TravelCalculator">Trip Cost Calculator</a>
           </li>
           <li>
-            <a href="#DestinationWeather">Destination Weather</a>
+           <a href="#DestinationWeather">Destination Weather</a>
           </li>
         </ul>
       </nav>
@@ -119,7 +119,7 @@ function App() {
             I know my Travel Destination!
           </button>
           <button onClick={() => setShowQuiz(true)}>
-            I need help picking a Destination
+            I need help picking a Travel Destination!
           </button>
           {showDropdown && (
           <div className="destination-dropdown">
@@ -208,7 +208,8 @@ function App() {
 
 
     {/* Submit button */}
-    <button
+    <br />
+    <button 
       onClick={() => {
         const countA = Object.values(answers).filter((v) => v === "A").length;
         const countB = Object.values(answers).filter((v) => v === "B").length;
@@ -271,7 +272,7 @@ function App() {
         </section>
 
         <section id="TravelCalculator">
-          <h2>Trip Cost Calculator:</h2>
+          <h2>Trip Cost Calculator</h2>
           <div className="row">
             <form onSubmit={handleSubmit}>
             <label htmlFor="flight">Flight Cost:</label>

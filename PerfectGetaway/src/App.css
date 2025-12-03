@@ -1,50 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+
+
 body {
-  font-family: Marker Felt;  
   background-color: rgb(152, 210, 248);  
+  font-family: Marker Felt;  
+  background-image: url("/images/travel.jpg");
+  background-position: 16% center;
+  background-size: 110%; 
   margin: 0;
   padding: 0;
-  list-style: none;
+  
 }
 
+
 header {
-  background-color: rgb(152, 210, 248);         
-  color: rgb(0, 0, 0);                    
+  background-color: rgb(196, 231, 239);         
+  color: rgb(7, 62, 91);                    
   text-align: center;              
   padding: 20px;                 
 }
 
+header h1 {
+  color: #06314d;
+  font-family: "Pacifico", cursive;
+  font-size: 5rem;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #0a4f6e;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+}
+
+section h2 {
+  color: #073E5B; 
+  font-family: "Playfair Display", serif; 
+  font-size: 2rem; 
+}
+
 nav ul {
-  list-style: none;
+  background-color:#073E5B;  
   margin: 0;                       
-  padding: 0;
-  background-color:#ffffff;          
+  padding: 0;        
   text-align: center;
 }
 
-/* Each list item displays inline horizontally */
 nav ul li {
   display: inline-block;
-  margin-right: 20px;              /* Spacing between nav links */
+  margin-right: 30px;    /* links spacing */       
 }
 
-/* Styling for links */
+/* links stylying */
 nav ul li a {
-  color: rgb(0, 0, 0);
-  list-style: none;
-  text-decoration: none;           /* Remove underlines */
-  padding: 10px 15px;              /* Add clickable area */
-  display: inline-block;           /* Allow padding to apply correctly */
+  color: rgb(214, 223, 228); 
+  font-size: 1.5rem; 
+  font-family: "Playfair Display", serif;           
+  padding: 15px 30px;             
+  display: inline-block;      
 }
 
-/* Hover effect: link background lightens when hovered */
+/* Hover color*/
 nav ul li a:hover {
-  background-color: #ffbfbf;
+  background-color: #9db7be;
 }
 
 main {
-  padding: 20px;                   /* Adds space around all main sections */
+  padding: 25px;                  
   text-align: center;
 }
+
+section {
+  background: rgba(255, 255, 255, 0.4);   
+  border: 3px solid rgba(7, 62, 91); 
+  border-radius: 12px;
+  padding: 30px;
+  margin: 100px auto;
+  width: 80%;
+  backdrop-filter: blur(1px);            
+  box-shadow: 0 4px 12px rgba(7, 62, 91);
+}
+
+section {
+  margin-top:100px;   
+  margin-bottom: 80px; 
+}
+
 
 .row {
   display: flex;
@@ -78,8 +120,9 @@ textarea {
 
 /* Submit button */
 button {
+
   font-family:'Trebuchet MS';
-  background-color: rgb(115, 0, 255);
+  background-color: rgb(7, 62, 91);
   color: white;
   cursor: pointer;                 /* Pointer cursor on hover */
   margin: 10px;
@@ -95,18 +138,24 @@ button {
 
 /* Button hover color change */
 button:hover {
-  background-color: darkblue;
+  background-color: #9db7be;
 }
 
 
 /* Footer styling */
 footer {
-  background-color: #fcc0e4;
-  color: rgb(0, 0, 0);
+  background-color: #073E5B;
+  color: rgb(214, 223, 228);
   text-align: center;
   padding: 10px;              
   width: 100%;
+  font-size: 1.5rem; 
 }
+
+
+
+
+
 
 /* Responsive Design */
 
