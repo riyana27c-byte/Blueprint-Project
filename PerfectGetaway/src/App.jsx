@@ -4,20 +4,16 @@ import "./App.css";
 
 function App() {
 
-  const [weather, setWeather] = useState(null);
-  const [destinations, setDestinations] = useState([]);
-  const [selectedDestination, setSelectedDestination] = useState("");
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [answers, setAnswers] = useState({
-    q1: "",
-    q2: "",
-    q3: ""
-  });
-  const [showResultDropdown, setShowResultDropdown] = useState(false);
-  const [resultGroup, setResultGroup] = useState(""); // "A" or "B"
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [totalCost, setTotalCost] = useState(null);
-  const cityCoords = {
+  const [weather, setWeather] = useState(null);//store weather
+  const [destinations, setDestinations] = useState([]);//list of destinations
+  const [selectedDestination, setSelectedDestination] = useState("");//stores name of chosen dest
+  const [showQuiz, setShowQuiz] = useState(false);//boolean to know whether or not i have to show quiz
+  const [answers, setAnswers] = useState({q1: "", q2: "", q3: "" });//stores answers of quiz
+  const [showResultDropdown, setShowResultDropdown] = useState(false);//boolean to show or not show the A or B dropdown if needed
+  const [resultGroup, setResultGroup] = useState(""); // A or B
+  const [showDropdown, setShowDropdown] = useState(false);//boolean to show the full 10 destination dropdown
+  const [totalCost, setTotalCost] = useState(null);//stores the result of the cost component
+  const cityCoords = { //stores corressponding lat and long of each city
     "New York City": { lat: 40.7128, lon: -74.0060 },
     "Dubai": { lat: 25.276987, lon: 55.296249 },
     "Paris": { lat: 48.8566, lon: 2.3522 },
@@ -30,7 +26,7 @@ function App() {
     "Tokyo": { lat: 35.6762, lon: 139.6503 }
   };
 
-  useEffect(() => {
+  useEffect(() => {//for weather api
     if (!selectedDestination){
       return;
     }
@@ -46,7 +42,7 @@ function App() {
     .catch((error) => console.log("Weather fetch error:", error));
   }, [selectedDestination]);
 
-  useEffect(() => {
+  useEffect(() => {//for tourism location api
      if (!selectedDestination){
       return;
      }
@@ -65,14 +61,14 @@ function App() {
     .catch((err) => console.error("Error fetching destinations:", err));
   }, [selectedDestination]);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({//stores the numbers of travel cost inputs
     flight: "",
     hotel: "",
     nights: "",
     food: ""
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => {//given in sample handles change in cost input
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -80,7 +76,7 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //calculates total cost
     e.preventDefault();
     console.log("Form submitted:", formData);
     const flight = Number(formData.flight);
@@ -98,6 +94,7 @@ function App() {
         <p>Plan your perfect vacation in seconds!</p>
       </header>
 
+
       <nav>
         <ul>
           <li>
@@ -112,102 +109,76 @@ function App() {
         </ul>
       </nav>
 
+
+
       <main>
+
+
         <section id="PickDestOptions">
           <h2>Pick your Travel Destination</h2>
+
+
           <button onClick={() => setShowDropdown(true)}>
             I know my Travel Destination!
           </button>
+
+
           <button onClick={() => setShowQuiz(true)}>
             I need help picking a Travel Destination!
           </button>
+
+
           {showDropdown && (
-          <div className="destination-dropdown">
-                    <select
-          value={selectedDestination}
-          onChange={(e) => setSelectedDestination(e.target.value)}
-        >
-          <option value="">Select a destination...</option>
-          {Object.keys(cityCoords).map((city) => (
-            <option key={city} value={city}>{city}</option>
-          ))}
-        </select>
-          </div>
+            <div className="destination-dropdown">
+              <select value={selectedDestination} onChange={(e) => setSelectedDestination(e.target.value)}>
+                <option value="">Select a destination...</option>
+                    {Object.keys(cityCoords).map((city) => (
+                        <option key={city} value={city}>{city}</option>
+                      ))}
+                  </select>
+            </div>
         )}
+
+
         {showQuiz && !showDropdown &&!showResultDropdown && (
-  <div className="quiz-box">
-    <h3>Vacation Quiz</h3>
+            <div className="quiz-box">
+                <h3>Vacation Quiz</h3>
+                    <p>1. Vacation vibe?</p>
+                      <label>
+                        <input type="radio" name="q1" value="A" onChange={(e) => setAnswers((prev) => ({ ...prev, q1: e.target.value }))} />
+                        A. Fast, diverse
+                      </label>
 
-    {/* Question 1 */}
-    <p>1. Vacation vibe?</p>
-    <label>
-      <input
-        type="radio"
-        name="q1"
-        value="A"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q1: e.target.value }))}
-      />
-      A. Fast, diverse
-    </label>
-
-    <label>
-      <input
-        type="radio"
-        name="q1"
-        value="B"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q1: e.target.value }))}
-      />
-      B. Slow, relaxing
-    </label>
+                      <label>
+                        <input type="radio" name="q1" value="B" onChange={(e) => setAnswers((prev) => ({ ...prev, q1: e.target.value }))} />
+                        B. Slow, relaxing
+                      </label>
 
 
-    {/* Question 2 */}
-    <p>2. What’s your ideal day?</p>
-    <label>
-      <input
-        type="radio"
-        name="q2"
-        value="A"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q2: e.target.value }))}
-      />
-      A. Skyscrapers, modern, crowds, nightlife
-    </label>
+                    <p>2. What’s your ideal day?</p>
+                    <label>
+                      <input type="radio" name="q2" value="A" onChange={(e) => setAnswers((prev) => ({ ...prev, q2: e.target.value }))} />
+                      A. Skyscrapers, modern, crowds, nightlife
+                    </label>
 
-    <label>
-      <input
-        type="radio"
-        name="q2"
-        value="B"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q2: e.target.value }))}
-      />
-      B. Museums, old architecture, history, scenery
-    </label>
+                    <label>
+                      <input type="radio" name="q2" value="B" onChange={(e) => setAnswers((prev) => ({ ...prev, q2: e.target.value }))}/>
+                      B. Museums, old architecture, history, scenery
+                    </label>
 
 
-    {/* Question 3 */}
-    <p>3. Who are you traveling with?</p>
-    <label>
-      <input
-        type="radio"
-        name="q3"
-        value="A"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q3: e.target.value }))}
-      />
-      A. Alone
-    </label>
+                    <p>3. Who are you traveling with?</p>
+                      <label>
+                        <input type="radio" name="q3" value="A" onChange={(e) => setAnswers((prev) => ({ ...prev, q3: e.target.value }))}/>
+                        A. Alone
+                      </label>
 
-    <label>
-      <input
-        type="radio"
-        name="q3"
-        value="B"
-        onChange={(e) => setAnswers((prev) => ({ ...prev, q3: e.target.value }))}
-      />
-      B. With family/friends
-    </label>
+                      <label>
+                        <input type="radio" name="q3" value="B" onChange={(e) => setAnswers((prev) => ({ ...prev, q3: e.target.value }))}/>
+                        B. With family/friends
+                      </label>
 
 
-    {/* Submit button */}
     <br />
     <button 
       onClick={() => {
@@ -219,7 +190,6 @@ function App() {
 
         setShowResultDropdown(true);
       }}
-      disabled={!answers.q1 || !answers.q2 || !answers.q3}
     >
       See My Destination!
     </button>
@@ -276,38 +246,16 @@ function App() {
           <div className="row">
             <form onSubmit={handleSubmit}>
             <label htmlFor="flight">Flight Cost:</label>
-            <input
-              name="flight"
-              value={formData.flight}
-              onChange={handleInputChange}
-              placeholder="Enter a number"
-              required
-            />
+            <input name="flight" value={formData.flight} onChange={handleInputChange} placeholder="Enter a number"/>
 
             <label htmlFor="hotel">Hotel Cost per Night:</label>
-            <input
-              name="hotel"
-              value={formData.hotel}
-              onChange={handleInputChange}
-              placeholder="Enter a number"
-              required
-            />
+            <input name="hotel" value={formData.hotel} onChange={handleInputChange} placeholder="Enter a number"/>
 
             <label htmlFor="nights">Number of Nights:</label>
-            <input
-              name="nights"
-              value={formData.nights}
-              onChange={handleInputChange}
-              placeholder="Enter a number"
-            ></input>
+            <input name="nights" value={formData.nights} onChange={handleInputChange} placeholder="Enter a number"></input>
 
             <label htmlFor="food">Food Cost per Day:</label>
-            <input
-              name="food"
-              value={formData.food}
-              onChange={handleInputChange}
-              placeholder="Enter a number"
-            ></input>
+            <input name="food" value={formData.food} onChange={handleInputChange} placeholder="Enter a number"></input>
 
             <button type="submit">Submit</button>
           </form>
@@ -316,6 +264,8 @@ function App() {
     <h3>Total Cost: ${totalCost}</h3>
   )}
         </section>
+
+
         <section id="DestinationWeather">
           <h2>Destination Weather</h2>
         {weather ? (
