@@ -93,8 +93,6 @@ function App() {
         <h1>Perfect Getaway</h1>
         <p>Plan your perfect vacation in seconds!</p>
       </header>
-
-
       <nav>
         <ul>
           <li>
@@ -108,12 +106,7 @@ function App() {
           </li>
         </ul>
       </nav>
-
-
-
       <main>
-
-
         <section id="PickDestOptions">
           <h2>Pick your Travel Destination</h2>
 
@@ -245,16 +238,16 @@ function App() {
           <h2>Trip Cost Calculator</h2>
           <div className="row">
             <form onSubmit={handleSubmit}>
-            <label htmlFor="flight">Flight Cost:</label>
+            <label>Flight Cost:</label>
             <input name="flight" value={formData.flight} onChange={handleInputChange} placeholder="Enter a number"/>
 
-            <label htmlFor="hotel">Hotel Cost per Night:</label>
+            <label>Hotel Cost per Night:</label>
             <input name="hotel" value={formData.hotel} onChange={handleInputChange} placeholder="Enter a number"/>
 
-            <label htmlFor="nights">Number of Nights:</label>
+            <label>Number of Nights:</label>
             <input name="nights" value={formData.nights} onChange={handleInputChange} placeholder="Enter a number"></input>
 
-            <label htmlFor="food">Food Cost per Day:</label>
+            <label>Food Cost per Day:</label>
             <input name="food" value={formData.food} onChange={handleInputChange} placeholder="Enter a number"></input>
 
             <button type="submit">Submit</button>
