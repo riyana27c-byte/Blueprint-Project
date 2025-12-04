@@ -178,8 +178,12 @@ function App() {
         const countA = Object.values(answers).filter((v) => v === "A").length;
         const countB = Object.values(answers).filter((v) => v === "B").length;
 
-        if (countA > countB) setResultGroup("A");
-        else setResultGroup("B");
+        if (countA > countB){
+          setResultGroup("A");
+        }
+        else{
+          setResultGroup("B");
+        }
 
         setShowResultDropdown(true);
       }}
